@@ -3,7 +3,7 @@ function getDatabaseConnection() {
     $servername = "localhost";
     $username = "root"; // Change to your DB username
     $password = ""; // Change to your DB password
-    $dbname = "school_attendance";
+    $dbname = "school_management";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
