@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$name = "Amid Gwapo";
+$username = $_SESSION['email'];
 
 
 ?>
@@ -64,7 +64,7 @@ $name = "Amid Gwapo";
                             id="dropdown-user">
                             <div class="px-4 py-3" role="none">
                                 <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    <?php echo htmlspecialchars($name); ?>
+                                    <?php echo htmlspecialchars($username); ?>
                                 </p>
 
                             </div>

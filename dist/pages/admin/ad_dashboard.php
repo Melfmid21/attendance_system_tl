@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$userName ="amid gwapo";
+$username = $_SESSION['email'];
 
 // Add database connection
 require_once '../../config/pdo_database.php';
@@ -75,7 +75,7 @@ $studentCount = $studentStatement->fetchColumn();
                             id="dropdown-user">
                             <div class="px-4 py-3" role="none">
                                 <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    <?php echo htmlspecialchars($userName); ?>
+                                    <?php echo htmlspecialchars($username); ?>
                                 </p>
 
                             </div>

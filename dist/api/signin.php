@@ -8,7 +8,7 @@ $email = $data['email'];
 $password = $data['password'];
 
 try {
-    $query = "SELECT id, role, password FROM users WHERE email = :email";
+    $query = "SELECT id, role, email, password FROM users WHERE email = :email";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
@@ -18,6 +18,7 @@ try {
         // Successful login - start session
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
+        $_SESSION['email'] = $user['email'];
 
         // Send a JSON response with success status and role
         echo json_encode([

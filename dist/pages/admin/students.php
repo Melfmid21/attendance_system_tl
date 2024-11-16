@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$username = "Amid Gwapo";
+$username = $_SESSION['email'];
 
 
 ?>
@@ -24,7 +24,7 @@ $username = "Amid Gwapo";
     <link rel="stylesheet" href="../../../node_modules/sweetalert2/dist/sweetalert2.min.css">
 </head>
 
-<body>
+<body class="bg-content">
     <nav
         class="fixed top-0 z-50 w-full bg-white border-b shadow-md border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -149,42 +149,205 @@ $username = "Amid Gwapo";
 
     </aside>
 
+    <!-- CONTENT -->
+    <!-- ================================================================================================================================= -->
     <div class="p-4 sm:ml-64">
-
-        <main class="p-2 dark:border-gray-700 mt-14">
+        <main class="p-2 dark:border-gray-700 mt-8">
             <div id="content-area">
-                <!-- Dynamic content will be loaded here -->
-                <div class="bg-white  rounded-lg shadow">
+                <h2 class="text-menu text-2xl font-bold mb-4 pt-4">Students</h2>
+                <div class="bg-white px-6  rounded-sm shadow-sm">
                     <!-- <h2 class="text-xl font-heading font-bold mb-4">Student Table</h2> -->
-                    <div class="relative overflow-x-auto shadow-sm rounded-lg">
-                        <table id="studentTable"
-                            class="w-full text-sm text-left rtl:text-right text-primary overflow-y-auto bg-secondary cursor-default">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="py-5 px-4 border-b border-gray-200 text-center text-sm leading-4 text-gray-50 uppercase tracking-wider">
-                                        ID</th>
-                                    <th
-                                        class="py-5 px-4 border-b border-gray-200 text-center text-sm leading-4 text-gray-50 uppercase tracking-wider">
-                                        Firstname</th>
-                                    <th
-                                        class="py-5 px-4 border-b border-gray-200 text-center text-sm leading-4 text-gray-50 uppercase tracking-wider ">
-                                        Lastname</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <div class="flex justify-between items-center pt-4 pb-2  bg-white">
+                        <!-- Search Input on the left -->
+                        <div>
+                            <button type="button" id="refresh"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative group">
+                                <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4" />
+                                </svg>
+                                <span class="sr-only">refresh</span>
 
-                            </tbody>
-                        </table>
+                                <!-- Tooltip -->
+                                <span
+                                    class="invisible group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white px-2 py-1 rounded text-sm whitespace-nowrap">
+                                    Refresh
+                                </span>
+                            </button>
+
+
+                            <input type="text" id="studentSearch" placeholder="Search Student & press enter..."
+                                class="p-2 border border-gray-300 rounded-sm focus:ring-2 focus:ring-gray-200 focus:outline-none w-64">
+                        </div>
+
+                        <button id="addStudent" data-dropdown-toggle="dropdown"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="button">Add Student<svg class="w-4 h-4 ms-3" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <!-- Dropdown menu -->
+                        <div id="dropdown"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                            <ul class="py-2 text-sm font-semibold text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownDefaultButton">
+                                <li>
+                                    <a href="../../pages/admin/students_add_college.php"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">College</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Senior
+                                        high</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Junior
+                                        high</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Elementary</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+
                     </div>
+
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class=" text-slate-600  bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Full Name</th>
+                                <th scope="col" class="px-6 py-3">Gender</th>
+                                <th scope="col" class="px-6 py-3">Email</th>
+                                <th scope="col" class="px-6 py-3">Actions</th> <!-- New column for buttons -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+        require_once '../../config/pdo_database.php';
+        try {
+            if (isset($_GET['query']) && !empty($_GET['query'])) {
+                include '../../include/admin/search_student.php';
+            } else {
+                // Pagination settings
+                $limit = 10; // Number of records per page
+                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
+                $offset = ($page - 1) * $limit; // Calculate the offset
+
+                // Query to fetch teacher data with pagination
+                $stmt = $pdo->prepare("SELECT * FROM students WHERE isDeleted != 1 LIMIT :limit OFFSET :offset");
+                $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+                $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+                $stmt->execute();
+                $students = $stmt->fetchAll();
+
+                // Query to count total number of students for pagination
+                $countStmt = $pdo->query("SELECT COUNT(*) FROM students WHERE isDeleted != 1 ");
+                $totalStudents = $countStmt->fetchColumn();
+                $totalPages = ceil($totalStudents / $limit); // Calculate total pages
+
+                // Check if there are any students
+                if ($students) {
+                    foreach ($students as $student) {
+                        $fullName = $student['firstname'] . ' ' . $student['middle_name'] . '. ' . $student['lastname'];
+                        echo '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">';
+                        echo '<td class="px-6 py-4 text-gray-800 whitespace-nowrap dark:text-white">' . htmlspecialchars($fullName) . '</td>';
+                        echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($student['gender']) . '</td>';
+                        echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($student['email']) . '</td>';
+                        echo '<td class="px-6 py-4" style="display: flex; align-items: center;">';
+
+                        // Edit button with tooltip
+                        echo '<button class="showEditStudentModal inline-flex items-center p-1 rounded-full transition-all duration-200 ease-in-out hover:bg-blue-100 relative group" 
+                        data-modal-target="edit-student-modal" 
+                        data-modal-toggle="edit-student-modal" 
+                        data-student="' . htmlspecialchars(json_encode($student), ENT_QUOTES, 'UTF-8') . '"
+                        style="margin-right: 10px;">
+                        <svg class="w-5 h-5 text-blue-600 hover:text-blue-900" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.1498 7.93997L8.27978 19.81C7.21978 20.88 4.04977 21.3699 3.32977 20.6599C2.60977 19.9499 3.11978 16.78 4.17978 15.71L16.0498 3.84C16.5979 3.31801 17.3283 3.03097 18.0851 3.04019C18.842 3.04942 19.5652 3.35418 20.1004 3.88938C20.6356 4.42457 20.9403 5.14781 20.9496 5.90463C20.9588 6.66146 20.6718 7.39189 20.1498 7.93997V7.93997Z" 
+                                                stroke="currentColor" 
+                                                stroke-width="1.5" 
+                                                stroke-linecap="round" 
+                                                stroke-linejoin="round"/>
+                        </svg>
+                        <span class="invisible group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white px-2 py-1 rounded text-sm whitespace-nowrap">
+                            Edit
+                        </span>
+                        </button>';
+
+                        // Delete button with tooltip
+                        echo '<button class="inline-flex items-center p-1 rounded-full transition-all duration-200 ease-in-out hover:bg-red-100 relative group" 
+                        id="deleteTeacher" 
+                        data-id="' . htmlspecialchars(json_encode($student), ENT_QUOTES, 'UTF-8') . '">
+                        <svg class="w-5 h-5 text-red-600 hover:text-red-900" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16" 
+                                                stroke="currentColor" 
+                                                stroke-width="2" 
+                                                stroke-linecap="round" 
+                                                stroke-linejoin="round"/>
+                        </svg>
+                        <span class="invisible group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white px-2 py-1 rounded text-sm whitespace-nowrap">
+                            Delete
+                        </span>
+                        </button>';
+
+                        echo '</td>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<tr><td colspan="4" class="px-6 py-4 text-center">No students found</td></tr>'; // Update colspan
+                }
+                // Pagination
+                echo '<nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4 px-4 pb-2"
+                aria-label="Table navigation">
+                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">
+                        Showing <span class="font-semibold text-gray-900 dark:text-white">' . (($page - 1) * $limit) + 1 . '-' . min($page * $limit, $totalStudents) . '</span>
+                        of <span class="font-semibold text-gray-900 dark:text-white">' . $totalStudents . '</span>
+                    </span>
+                    <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+                        <li>
+                            <a href="?page=' . max(1, $page - 1) . '" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                        </li>';
+                        for ($i = 1; $i <= $totalPages; $i++) {
+                            echo '<li><a href="?page=' . $i . '" class="flex items-center justify-center px-3 h-8 ' . (($i === $page) ? 'text-blue-600 border border-gray-300 bg-blue-50' : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700') . ' dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">' . $i . '</a></li>';
+                        }
+                        echo '<li>
+                            <a href="?page=' . min($totalPages, $page + 1) . '" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                        </li>
+                    </ul>
+                </nav>';
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        ?>
+                        </tbody>
+                    </table>
+
                 </div>
-                <!-- end of content -->
+
+
+                <?php  include '../../include/admin/edit_modal_student.php';?>
+
             </div>
-        </main>
+            <!-- end of content -->
+
+    </div>
+    </main>
     </div>
     <script src="../../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="../../../node_modules/flowbite/dist/flowbite.min.js"></script>
     <script src="../../assets/js/admin/students.js"></script>
+    <!-- <script src="../../assets/js/admin/teacher_add_form.js"></script> -->
     <script src="../../assets/js/admin/logout.js"></script>
 </body>
 
