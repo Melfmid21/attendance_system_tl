@@ -18,8 +18,8 @@ if (isset($data['id'])) {
         // Begin the transaction
         $pdo->beginTransaction();
 
-        // Update the teacher's status to inactive
-        $stmt = $pdo->prepare("UPDATE users SET isDeleted = 1 WHERE id = ?");
+        // Update the student's status to inactive
+        $stmt = $pdo->prepare("UPDATE students SET isDeleted = 1 WHERE id = ?");
         $stmt->execute([$userId]);
 
         // Commit the transaction

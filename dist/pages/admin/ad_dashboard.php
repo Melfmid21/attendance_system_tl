@@ -13,12 +13,12 @@ $username = $_SESSION['email'];
 require_once '../../config/pdo_database.php';
 
 // Fetch total number of teachers
-$teacherQuery = "SELECT COUNT(*) as teacher_count FROM users WHERE role = 'teacher' AND status != 'inactive'";
+$teacherQuery = "SELECT COUNT(*) as teacher_count FROM users WHERE role = 'teacher' AND isDeleted !=1";
 $teacherStatement = $pdo->query($teacherQuery);
 $teacherCount = $teacherStatement->fetchColumn();
 
 // Fetch total number of students
-$studentQuery = "SELECT COUNT(*) as student_count FROM users WHERE role = 'student' AND status != 'inactive'";
+$studentQuery = "SELECT COUNT(*) as student_count FROM students WHERE isDeleted !=1 ";
 $studentStatement = $pdo->query($studentQuery);
 $studentCount = $studentStatement->fetchColumn();
 
@@ -74,7 +74,7 @@ $studentCount = $studentStatement->fetchColumn();
                         <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
                             id="dropdown-user">
                             <div class="px-4 py-3" role="none">
-                                <p class="text-sm text-gray-900 dark:text-white" role="none">
+                                <p class="text-sm text-primary dark:text-white" role="none">
                                     <?php echo htmlspecialchars($username); ?>
                                 </p>
 
@@ -170,8 +170,8 @@ $studentCount = $studentStatement->fetchColumn();
                     <div class="bg-white px-7 py-6 rounded-sm border border-stroke shadow-md flex items-center">
                         <img src="../../assets/images/logo.png" alt="image" class="w-16 h-16 rounded-full mr-4">
                         <div>
-                            <h2 class="text-sm text-gray-700 mt-2">College</h2>
-                            <h1 class="text-3xl font-bold text-gray-900">1500</h1>
+                            <h2 class="text-sm font-semibold text-gray-700 mt-2">College</h2>
+                            <h1 class="text-3xl font-bold text-primary"><?php echo $studentCount; ?></h1>
                         </div>
                     </div>
 
@@ -179,33 +179,164 @@ $studentCount = $studentStatement->fetchColumn();
                     <div class="bg-white px-7 py-6 rounded-sm border border-stroke shadow-md flex items-center">
                         <img src="../../assets/images/logo.png" alt="image" class="w-16 h-16 rounded-full mr-4">
                         <div>
-                            <h2 class="text-sm text-gray-700 mt-2">High School</h2>
-                            <h1 class="text-3xl font-bold text-gray-900">1500</h1>
+                            <h2 class="text-sm font-semibold text-gray-700 mt-2">High School</h2>
+                            <h1 class="text-3xl font-bold text-primary">1500</h1>
                         </div>
                     </div>
                     <div class="bg-white px-7 py-6 rounded-sm border border-stroke shadow-md flex items-center">
                         <img src="../../assets/images/logo.png" alt="image" class="w-16 h-16 rounded-full mr-4">
                         <div>
-                            <h2 class="text-sm text-gray-700 mt-2">Elementary</h2>
-                            <h1 class="text-3xl font-bold text-gray-900">1500</h1>
+                            <h2 class="text-sm font-semibold text-gray-700 mt-2">Elementary</h2>
+                            <h1 class="text-3xl font-bold text-primary">1500</h1>
                         </div>
                     </div>
 
                     <div class="bg-white px-7 py-6 rounded-sm border border-stroke shadow-md flex items-center">
                         <img src="../../assets/images/teacher.png" alt="image" class="w-16 h-16  mr-4">
                         <div>
-                            <h2 class="text-sm text-gray-700 mt-2">Teachers</h2>
-                            <h1 class="text-3xl font-bold text-gray-900"><?php echo $teacherCount; ?></h1>
+                            <h2 class="text-sm font-semibold text-gray-700 mt-2">Teachers</h2>
+                            <h1 class="text-3xl font-bold text-primary"><?php echo $teacherCount; ?></h1>
                         </div>
                     </div>
                 </div>
+                <div class="grid grid-cols-1  gap-4 mt-4">
+                    <div id="content-area">
+
+                        <div class="bg-white px-6  rounded-sm shadow-sm pb-10">
+                            <div class="bg-white px-6  border-b-2 border-gray-200 flex items-center justify-between">
+                                <h2 class="text-menu text-2xl font-bold mb-4 pt-4">Student's Attendance</h2>
+                                <!-- Date and Time -->
+                                <div id="date-time" class="text-primary text-xl font-bold"></div>
+                            </div>
+
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead class="text-slate-600 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">Full Name</th>
+                                        <th scope="col" class="px-6 py-3">Grade Level</th>
+                                        <th scope="col" class="px-6 py-3">Year Level</th>
+                                        <th scope="col" class="px-6 py-3">Course</th>
+                                        <th scope="col" class="px-6 py-3">Date & Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+        require_once '../../config/pdo_database.php';
+
+        try {
+            // Pagination settings
+            $limit = 10; // Number of records per page
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
+            $offset = ($page - 1) * $limit; // Calculate the offset
+
+            // Query to fetch attendance data with student information
+            $stmt = $pdo->prepare("
+                SELECT 
+                    s.lastname, 
+                    s.firstname, 
+                    s.middle_name, 
+                    s.grade_level,
+                    s.year_level,
+                    s.course, 
+                    a.date_time 
+                FROM attendance a 
+                JOIN students s ON a.student_id = s.id 
+                WHERE s.isDeleted != 1 
+                ORDER BY a.date_time DESC 
+                LIMIT :limit OFFSET :offset
+            ");
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+            $records = $stmt->fetchAll();
+
+            // Query to count total number of records for pagination
+            $countStmt = $pdo->query("SELECT COUNT(*) FROM attendance a JOIN students s ON a.student_id = s.id WHERE s.isDeleted != 1");
+            $totalRecords = $countStmt->fetchColumn();
+            $totalPages = ceil($totalRecords / $limit); // Calculate total pages
+
+            // Check if there are any records
+            if ($records) {
+                foreach ($records as $record) {
+                    // Format full name
+                    $fullName = ucwords(strtolower($record['lastname'])) . ', ' .
+                                ucwords(strtolower($record['firstname'])) . ' ' .
+                                strtoupper(substr($record['middle_name'], 0, 1)) . '.';
+
+                    // Format date and time
+                    $formattedDateTime = date('F d, Y h:i A', strtotime($record['date_time']));
+
+                    echo '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">';
+                    echo '<td class="px-6 py-4 text-gray-800 whitespace-nowrap dark:text-white">' . htmlspecialchars($fullName) . '</td>';
+                    echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($record['grade_level']) . '</td>';
+                    echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($record['year_level']) . '</td>';
+                    echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($record['course']) . '</td>';
+                    echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($formattedDateTime) . '</td>';
+                    echo '</tr>';
+                }
+            } else {
+                echo '<tr><td colspan="5" class="px-6 py-4 text-center">No records found</td></tr>';
+            }
+
+            // Pagination
+            echo '<nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4 px-4 pb-2" aria-label="Table navigation">';
+            echo '<span class="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">';
+            echo 'Showing <span class="font-semibold text-gray-900 dark:text-white">' . (($page - 1) * $limit + 1) . '-' . min($page * $limit, $totalRecords) . '</span>';
+            echo ' of <span class="font-semibold text-gray-900 dark:text-white">' . $totalRecords . '</span>';
+            echo '</span>';
+            echo '<ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">';
+            echo '<li><a href="?page=' . max(1, $page - 1) . '" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a></li>';
+            for ($i = 1; $i <= $totalPages; $i++) {
+                echo '<li><a href="?page=' . $i . '" class="flex items-center justify-center px-3 h-8 ' . (($i === $page) ? 'text-blue-600 border border-gray-300 bg-blue-50' : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700') . ' dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">' . $i . '</a></li>';
+            }
+            echo '<li><a href="?page=' . min($totalPages, $page + 1) . '" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a></li>';
+            echo '</ul></nav>';
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        ?>
+                                </tbody>
+                            </table>
+
+
+
+
+                        </div>
+
+
+                    </div>
+                    <!-- end of content -->
+
+                </div>
             </div>
-        </main>
+    </div>
+    </main>
     </div>
     <script src="../../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="../../../node_modules/flowbite/dist/flowbite.min.js"></script>
     <script src="../../assets/js/admin/admin_test.js"></script>
     <script src="../../assets/js/admin/logout.js"></script>
+    <script>
+    // Function to format and display the current date and time
+    function updateDateTime() {
+        const now = new Date();
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        };
+        const formattedDate = now.toLocaleDateString(undefined, options);
+        document.getElementById('date-time').textContent = formattedDate;
+    }
+
+    // Update the date and time immediately and every second
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+    </script>
 </body>
 
 </html>

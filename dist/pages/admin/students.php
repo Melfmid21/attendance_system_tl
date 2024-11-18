@@ -245,7 +245,27 @@ $username = $_SESSION['email'];
                 $offset = ($page - 1) * $limit; // Calculate the offset
 
                 // Query to fetch teacher data with pagination
-                $stmt = $pdo->prepare("SELECT * FROM students WHERE isDeleted != 1 LIMIT :limit OFFSET :offset");
+                $stmt = $pdo->prepare("SELECT 
+    id, 
+    firstname, 
+    middle_name, 
+    lastname, 
+    gender, 
+    dob, 
+    email, 
+    contact_number, 
+    address, 
+    guardian_name, 
+    relationship, 
+    guardian_contact_number, 
+    guardian_address, 
+    course, 
+    year_level, 
+    fingerprint_id 
+FROM students 
+WHERE isDeleted != 1 
+LIMIT :limit OFFSET :offset;
+");
                 $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
                 $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
                 $stmt->execute();

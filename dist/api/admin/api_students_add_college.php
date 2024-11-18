@@ -23,6 +23,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
+        // Check if email already exists
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM students WHERE email = :email');
+        $stmt->execute([':email' => $input['email']]);
+        $emailExists = $stmt->fetchColumn();
+
+        if ($emailExists) {
+            echo json_encode(['status' => 'error', 'message' => 'Email already exists.']);
+            http_response_code(400);
+            exit;
+        }
+
+        // Check if fingerprint ID already exists
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM students WHERE fingerprint_id = :fingerprint_id');
+        $stmt->execute([':fingerprint_id' => $input['fingerprint_id']]);
+        $fingerprintExists = $stmt->fetchColumn();
+
+        if ($fingerprintExists) {
+            echo json_encode(['status' => 'error', 'message' => 'Fingerprint ID already exists.']);
+            http_response_code(400);
+            exit;
+        }
+
         // Prepare the SQL statement
         $stmt = $pdo->prepare(
             'INSERT INTO students (

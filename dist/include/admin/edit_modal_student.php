@@ -1,15 +1,15 @@
- <!-- Edit teacher Modal -->
+ <!-- Edit student Modal -->
  <!-- ================================================================================================================================== -->
- <!-- Edit teacher modal -->
+ <!-- Edit student modal -->
  <div id="edit-student-modal" tabindex="-1" aria-hidden="true"
      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-     <div class="relative p-4 w-full max-w-lg max-h-full">
+     <div class="relative w-full max-w-4xl max-h-full">
          <!-- Modal content -->
          <div class="relative bg-white rounded-sm shadow dark:bg-gray-700">
              <!-- Modal header -->
              <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                     Edit Teacher's Account
+                 <h3 class="text-lg font-bold text-primary dark:text-white">
+                     Edit Student's Account
                  </h3>
                  <button type="button"
                      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-sm text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -25,16 +25,19 @@
              <!-- Modal body -->
              <!-- Registration Form -->
              <div class="bg-white px-6 py-4 rounded-sm shadow-sm">
-                 <form class="space-y-6">
+                 <form id="editStudentForm" class="space-y-6">
                      <!-- Personal Information -->
+                     <input type="number" name="id" id="id"
+                         class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-sm p-2.5 focus:outline-none"
+                         hidden>
                      <div>
-                         <h3 class="text-lg font-bold text-primary">Personal Information</h3>
+                         <h3 class="text-lg font-semibold text-primary">Personal Information</h3>
                          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                              <div>
                                  <label for="edit_firstname" class="block text-sm font-medium text-gray-700">First
                                      Name</label>
                                  <input type="text" id="edit_firstname" name="edit_firstname"
-                                     class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                     class="mt-1 p-2 block w-full  border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                                      placeholder="Enter First Name" required>
                              </div>
                              <div>
@@ -84,7 +87,8 @@
 
                              </div>
                              <div>
-                                 <label for="edit_address" class="block text-sm font-medium text-gray-700">Address</label>
+                                 <label for="edit_address"
+                                     class="block text-sm font-medium text-gray-700">Address</label>
                                  <input type="text" id="edit_address" name="edit_address"
                                      class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                                      placeholder="Enter Address" required>
@@ -94,7 +98,7 @@
 
                      <!-- Parent/Guardian Information -->
                      <div class="mt-6">
-                         <h3 class="text-lg font-bold text-primary">Parent/Guardian Information</h3>
+                         <h3 class="text-lg font-semibold text-primary">Parent/Guardian Information</h3>
                          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                              <div>
                                  <label for="edit_guardian_name"
@@ -105,7 +109,8 @@
                                      placeholder="Enter Parent/Guardian Name" required>
                              </div>
                              <div>
-                                 <label for="edit_relationship" class="block text-sm font-medium text-gray-700">Relationship
+                                 <label for="edit_relationship"
+                                     class="block text-sm font-medium text-gray-700">Relationship
                                      to
                                      Student</label>
                                  <input type="text" id="edit_relationship" name="edit_relationship"
@@ -113,7 +118,8 @@
                                      placeholder="e.g., Mother, Father, Guardian" required>
                              </div>
                              <div>
-                                 <label for="edit_guardian_contact" class="block text-sm font-medium text-gray-700">Contact
+                                 <label for="edit_guardian_contact"
+                                     class="block text-sm font-medium text-gray-700">Contact
                                      Number</label>
                                  <input type="tel" id="edit_guardian_contact" name="edit_guardian_contact"
                                      class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
@@ -131,7 +137,7 @@
 
                      <!-- Academic Information -->
                      <div class="">
-                         <h3 class="text-lg font-bold text-primary">Academic Information</h3>
+                         <h3 class="text-lg font-semibold text-primary">Academic Information</h3>
                          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                              <div>
                                  <label for="edit_course" class="block text-sm font-medium text-gray-700">Course</label>
@@ -153,7 +159,8 @@
                                  </select>
                              </div>
                              <div class="md:col-span-2">
-                                 <label for="edit_fingerprint_id" class="block text-sm font-medium text-gray-700">Fingerprint
+                                 <label for="edit_fingerprint_id"
+                                     class="block text-sm font-medium text-gray-700">Fingerprint
                                      ID</label>
                                  <input type="text" id="edit_fingerprint_id" name="edit_fingerprint_id"
                                      class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
@@ -168,7 +175,11 @@
                              class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-md focus:ring-4 focus:ring-blue-500 focus:outline-none">
                              Register
                          </button>
+                         <button type="button" data-modal-toggle="edit-student-modal"
+                             class="mt-3 w-full text-gray-800 hover:text-white border font-medium border-gray-600 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Close</button>
+
                      </div>
+
                  </form>
              </div>
          </div>

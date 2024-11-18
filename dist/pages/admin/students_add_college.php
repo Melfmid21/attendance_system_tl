@@ -164,7 +164,7 @@ $username = $_SESSION['email'];
 
 
                         <a href="../../pages/admin/students.php" type="button" id="refreshButton"
-                            class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500 relative group">
+                            class="text-blue-700 border border-blue-700 hover:border-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500 relative group">
                             <svg class="w-4 h-4 text-blue-700 group-hover:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 viewBox="0 0 24 24">
@@ -367,6 +367,9 @@ $username = $_SESSION['email'];
                                 class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-md focus:ring-4 focus:ring-blue-500 focus:outline-none">
                                 Register
                             </button>
+                            <button type="button" id="backToStudentPageButton"
+                                class="mt-3 w-full text-gray-800 hover:text-white border font-medium border-gray-600 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Close</button>
+
                         </div>
                     </form>
                 </div>
