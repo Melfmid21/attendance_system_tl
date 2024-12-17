@@ -1,3 +1,4 @@
 //npm init -y 
 //npm run build
 //
+RUN "npm run build" in the terminal of the visual studio code everytime of first open
