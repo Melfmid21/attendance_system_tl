@@ -115,7 +115,7 @@ $studentCount = $studentStatement->fetchColumn();
                     </a>
                 </li>
                 <li>
-                    <a href="" id="teacher_page"
+                    <a href="../../pages/teacher/teach_schedule.php" id="teach_schedule_page"
                         class="flex items-center p-2 text-gray-200 rounded-sm dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
                         <svg aria-hidden="true" class="w-5 h-5 text-gray-200 dark:text-white"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -124,27 +124,12 @@ $studentCount = $studentStatement->fetchColumn();
                                 d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z"
                                 clip-rule="evenodd" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Teacher
+                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Schedule
                     </a>
                 </li>
 
                 <li>
-                    <a id="students_page"
-                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
-
-                        <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path fill-rule="evenodd"
-                                d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.82-3.096a5.51 5.51 0 0 0-2.797-6.293 3.5 3.5 0 1 1 2.796 6.292ZM19.5 18h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1a5.503 5.503 0 0 1-.471.762A5.998 5.998 0 0 1 19.5 18ZM4 7.5a3.5 3.5 0 0 1 5.477-2.889 5.5 5.5 0 0 0-2.796 6.293A3.501 3.501 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4 2 2 0 0 0 2 2h.5a5.998 5.998 0 0 1 3.071-5.238A5.505 5.505 0 0 1 7.1 12Z"
-                                clip-rule="evenodd" />
-                        </svg>
-
-                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Student
-                    </a>
-                </li>
-                <li>
-                    <a id="department"
+                    <a id="stud_attendance_page"
                         class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
                         aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
 
@@ -156,7 +141,7 @@ $studentCount = $studentStatement->fetchColumn();
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Department</span>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Student's Attendance</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -165,7 +150,7 @@ $studentCount = $studentStatement->fetchColumn();
                     </a>
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="../../pages/admin/ad_department_college.php"
+                            <a href="../../pages/teacher/teach_student_attendance_college.php"
                                 class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
                         </li>
                         <li>
@@ -187,7 +172,7 @@ $studentCount = $studentStatement->fetchColumn();
                 </li>
 
                 <li>
-                    <a id="subject"
+                    <a id="teach_settings_page"
                         class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
                         aria-controls="dropdown-subject" data-collapse-toggle="dropdown-subject">
 
@@ -199,7 +184,7 @@ $studentCount = $studentStatement->fetchColumn();
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Subject</span>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Settings</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -209,10 +194,10 @@ $studentCount = $studentStatement->fetchColumn();
                     </a>
                     <ul id="dropdown-subject" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="../../pages/admin/ad_department_college.php"
-                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
+                            <a href="../../pages/teacher/teach_settings_account.php"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Account</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#"
                                 class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Senior
                                 high</a>
@@ -226,22 +211,10 @@ $studentCount = $studentStatement->fetchColumn();
                             <a href="#"
                                 class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Elementary
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
-                <li>
-                    <a id="courses_page"
-                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
-                        <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 12a28.076 28.076 0 0 1-1.091 9M7.231 4.37a8.994 8.994 0 0 1 12.88 3.73M2.958 15S3 14.577 3 12a8.949 8.949 0 0 1 1.735-5.307m12.84 3.088A5.98 5.98 0 0 1 18 12a30 30 0 0 1-.464 6.232M6 12a6 6 0 0 1 9.352-4.974M4 21a5.964 5.964 0 0 1 1.01-3.328 5.15 5.15 0 0 0 .786-1.926m8.66 2.486a13.96 13.96 0 0 1-.962 2.683M7.5 19.336C9 17.092 9 14.845 9 12a3 3 0 1 1 6 0c0 .749 0 1.521-.031 2.311M12 12c0 3 0 6-2 9" />
-                        </svg>
 
-
-                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Biometric
-                    </a>
-                </li>
             </ul>
 
         </div>

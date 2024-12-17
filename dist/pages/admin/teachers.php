@@ -178,7 +178,7 @@ $username = $_SESSION['email'];
         <div class="h-full px-3 pb-4 overflow-y-auto bg-sidebar dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a id="dashboard_page"
+                    <a href="../../pages/admin/ad_dashboard.php" id="dashboard_page"
                         class="flex items-center p-2 text-gray-200 rounded-sm dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
                         <svg aria-hidden="true" class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -206,8 +206,9 @@ $username = $_SESSION['email'];
                 </li>
 
                 <li>
-                    <a id="students_page"
-                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
+                    <a id="ad_student_page"
+                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
+                        aria-controls="ad_student" data-collapse-toggle="ad_student">
 
                         <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -217,13 +218,39 @@ $username = $_SESSION['email'];
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Student
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Students</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
                     </a>
+                    <ul id="ad_student" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="../../pages/admin/ad_student_college.php"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Senior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Junior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Elementary
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a id="department"
                         class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
-                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                        aria-controls="ad_department" data-collapse-toggle="ad_department">
 
                         <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -240,7 +267,7 @@ $username = $_SESSION['email'];
                                 d="m1 1 4 4 4-4" />
                         </svg>
                     </a>
-                    <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                    <ul id="ad_department" class="hidden py-2 space-y-2">
                         <li>
                             <a href="../../pages/admin/ad_department_college.php"
                                 class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
@@ -262,7 +289,6 @@ $username = $_SESSION['email'];
                         </li>
                     </ul>
                 </li>
-
                 <li>
                     <a id="subject"
                         class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
@@ -559,7 +585,7 @@ $username = $_SESSION['email'];
     </div>
     <script src="../../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="../../../node_modules/flowbite/dist/flowbite.min.js"></script>
-    <script src="../../assets/js/admin/teachers.js"></script>
+    <!-- <script src="../../assets/js/admin/teachers.js"></script> -->
     <!-- <script src="../../assets/js/admin/teacher_add_form.js"></script> -->
     <script src="../../assets/js/admin/logout.js"></script>
 

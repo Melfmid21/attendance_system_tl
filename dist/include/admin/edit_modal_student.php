@@ -139,46 +139,75 @@
                      <div class="">
                          <h3 class="text-lg font-semibold text-primary">Academic Information</h3>
                          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                             <div>
-                                 <label for="edit_course" class="block text-sm font-medium text-gray-700">Course</label>
-                                 <input type="text" id="edit_course" name="edit_course"
-                                     class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                     placeholder="Enter Course" required>
-                             </div>
-                             <div>
-                                 <label for="edit_year_level" class="block text-sm font-medium text-gray-700">Year
-                                     Level</label>
-                                 <select id="edit_year_level" name="edit_year_level"
-                                     class="mt-1 p-2 text-gray-700 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                     required>
-                                     <option value="">Select Year Level</option>
-                                     <option value="1st Year">1st Year</option>
-                                     <option value="2nd Year">2nd Year</option>
-                                     <option value="3rd Year">3rd Year</option>
-                                     <option value="4th Year">4th Year</option>
-                                 </select>
-                             </div>
-                             <div class="md:col-span-2">
-                                 <label for="edit_fingerprint_id"
-                                     class="block text-sm font-medium text-gray-700">Fingerprint
-                                     ID</label>
-                                 <input type="text" id="edit_fingerprint_id" name="edit_fingerprint_id"
-                                     class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                     placeholder="Enter Fingerprint ID" required>
+                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                 <?php
+                                    // Include database connection
+                                    require_once '../../config/pdo_database.php';
+
+                                    try {
+                                        // Fetch courses from department table using PDO
+                                        $query = "SELECT DISTINCT course_section_name FROM department WHERE grade_level = :grade_level";
+                                        $stmt = $pdo->prepare($query);
+                                        $stmt->execute(['grade_level' => 'college']);
+                                    ?>
+
+                                 <div>
+                                     <label for="edit_course"
+                                         class="block text-sm font-medium text-gray-700">Course</label>
+                                     <select id="edit_course" name="edit_course"
+                                         class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                         required>
+                                         <option value="">Select Course</option>
+                                         <?php
+                                            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                                echo '<option value="' . htmlspecialchars($row['course_section_name']) . '">' . 
+                                                    htmlspecialchars($row['course_section_name']) . '</option>';
+                                            }
+                                            ?>
+                                     </select>
+                                 </div>
+
+                                 <?php
+                                    } catch(PDOException $e) {
+                                        // Handle any errors
+                                        echo "Error: " . $e->getMessage();
+                                    }
+                                ?>
+
+                                 <div>
+                                     <label for="edit_year_level" class="block text-sm font-medium text-gray-700">Year
+                                         Level</label>
+                                     <select id="edit_year_level" name="edit_year_level"
+                                         class="mt-1 p-2 text-gray-700 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                         required>
+                                         <option value="">Select Year Level</option>
+                                         <option value="1st Year">1st Year</option>
+                                         <option value="2nd Year">2nd Year</option>
+                                         <option value="3rd Year">3rd Year</option>
+                                         <option value="4th Year">4th Year</option>
+                                     </select>
+                                 </div>
+                                 <div class="md:col-span-2">
+                                     <label for="edit_fingerprint_id"
+                                         class="block text-sm font-medium text-gray-700">Fingerprint
+                                         ID</label>
+                                     <input type="text" id="edit_fingerprint_id" name="edit_fingerprint_id"
+                                         class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                         placeholder="Enter Fingerprint ID" required>
+                                 </div>
                              </div>
                          </div>
-                     </div>
 
-                     <!-- Submit Button -->
-                     <div class="mt-10 mb-4">
-                         <button type="submit"
-                             class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-md focus:ring-4 focus:ring-blue-500 focus:outline-none">
-                             Register
-                         </button>
-                         <button type="button" data-modal-toggle="edit-student-modal"
-                             class="mt-3 w-full text-gray-800 hover:text-white border font-medium border-gray-600 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Close</button>
+                         <!-- Submit Button -->
+                         <div class="mt-10 mb-4">
+                             <button type="submit"
+                                 class="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-4 rounded-md focus:ring-4 focus:ring-blue-500 focus:outline-none">
+                                 Update
+                             </button>
+                             <button type="button" data-modal-toggle="edit-student-modal"
+                                 class="mt-3 w-full text-gray-800 hover:text-white border font-medium border-gray-600 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Close</button>
 
-                     </div>
+                         </div>
 
                  </form>
              </div>

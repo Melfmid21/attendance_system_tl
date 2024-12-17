@@ -89,7 +89,7 @@ $username = $_SESSION['email'];
         <div class="h-full px-3 pb-4 overflow-y-auto bg-sidebar dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a id="dashboard_page"
+                    <a href="../../pages/admin/ad_dashboard.php" id="dashboard_page"
                         class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer hover:bg-menu dark:text-white  dark:hover:bg-gray-700 group">
                         <svg class="w-5 h-5 text-gray-200 transition duration-75 dark:text-gray-400  "
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -103,8 +103,8 @@ $username = $_SESSION['email'];
                     </a>
                 </li>
                 <li>
-                    <a href="" id="teacher_page"
-                        class="flex items-center p-2 text-gray-200 rounded-sm  cursor-pointer dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
+                    <a href="../../pages/admin/teachers.php" id="teacher_page"
+                        class="flex items-center p-2 text-gray-200 rounded-sm dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
                         <svg aria-hidden="true" class="w-5 h-5 text-gray-200 dark:text-white"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24" focusable="false">
@@ -116,32 +116,90 @@ $username = $_SESSION['email'];
                     </a>
                 </li>
 
-                <li>
-                    <a id="students_page"
-                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer bg-menu  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
-                        <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M4 5a2 2 0 0 0-2 2v2.5a1 1 0 0 0 1 1 1.5 1.5 0 1 1 0 3 1 1 0 0 0-1 1V17a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2.5a1 1 0 0 0-1-1 1.5 1.5 0 1 1 0-3 1 1 0 0 0 1-1V7a2 2 0 0 0-2-2H4Z" />
-                        </svg>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Student
-                    </a>
-                </li>
                 <li>
-                    <a id="courses_page"
-                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
+                    <a id="ad_student_page"
+                        class="flex items-center p-2 text-gray-200 bg-menu rounded-sm cursor-pointer  dark:text-white  dark:hover:bg-gray-700 group"
+                        aria-controls="ad_student" data-collapse-toggle="ad_student">
+
                         <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
-                                d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-3 8a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Zm2 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Z"
+                                d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.82-3.096a5.51 5.51 0 0 0-2.797-6.293 3.5 3.5 0 1 1 2.796 6.292ZM19.5 18h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1a5.503 5.503 0 0 1-.471.762A5.998 5.998 0 0 1 19.5 18ZM4 7.5a3.5 3.5 0 0 1 5.477-2.889 5.5 5.5 0 0 0-2.796 6.293A3.501 3.501 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4 2 2 0 0 0 2 2h.5a5.998 5.998 0 0 1 3.071-5.238A5.505 5.505 0 0 1 7.1 12Z"
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Course
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Students</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
                     </a>
+                    <ul id="ad_student" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="../../pages/admin/ad_student_college.php"
+                                class="flex items-center w-full p-2 text-gray-200 bg-menu transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Senior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Junior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Elementary
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a id="department"
+                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
+                        aria-controls="ad_department" data-collapse-toggle="ad_department">
+
+                        <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Department</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </a>
+                    <ul id="ad_department" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="../../pages/admin/ad_department_college.php"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Senior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Junior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Elementary
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
 
@@ -163,7 +221,7 @@ $username = $_SESSION['email'];
                     <div class="flex space-x-4">
 
 
-                        <a href="../../pages/admin/students.php" type="button" id="refreshButton"
+                        <a href="../../pages/admin/ad_student_college.php" type="button" id="refreshButton"
                             class="text-blue-700 border border-blue-700 hover:border-blue-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500 relative group">
                             <svg class="w-4 h-4 text-blue-700 group-hover:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -332,12 +390,40 @@ $username = $_SESSION['email'];
                         <div class="">
                             <h3 class="text-lg font-bold text-primary">Academic Information</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                <?php
+                                    // Include database connection
+                                    require_once '../../config/pdo_database.php';
+
+                                    try {
+                                        // Fetch courses from department table using PDO
+                                        $query = "SELECT DISTINCT course_section_name FROM department WHERE grade_level = :grade_level";
+                                        $stmt = $pdo->prepare($query);
+                                        $stmt->execute(['grade_level' => 'college']);
+                                    ?>
+
                                 <div>
                                     <label for="course" class="block text-sm font-medium text-gray-700">Course</label>
-                                    <input type="text" id="course" name="course"
+                                    <select id="course" name="course"
                                         class="mt-1 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="Enter Course" required>
+                                        required>
+                                        <option value="">Select Course</option>
+                                        <?php
+                                            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                                echo '<option value="' . htmlspecialchars($row['course_section_name']) . '">' . 
+                                                    htmlspecialchars($row['course_section_name']) . '</option>';
+                                            }
+                                            ?>
+                                    </select>
                                 </div>
+
+                                <?php
+                                    } catch(PDOException $e) {
+                                        // Handle any errors
+                                        echo "Error: " . $e->getMessage();
+                                    }
+                                ?>
+
+
                                 <div>
                                     <label for="year_level" class="block text-sm font-medium text-gray-700">Year
                                         Level</label>
@@ -382,37 +468,6 @@ $username = $_SESSION['email'];
     <script src="../../assets/js/admin/logout.js"></script>
     <script src="../../assets/js/admin/students_add_college.js"></script>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document
-            .getElementById("dashboard_page")
-            .addEventListener("click", function(e) {
-                e.preventDefault();
-                window.location.href = "../../pages/admin/ad_dashboard.php";
-                //console.log("Teacher button is clicked.");
-            });
-        document
-            .getElementById("teacher_page")
-            .addEventListener("click", function(e) {
-                e.preventDefault();
-                window.location.href = "../../pages/admin/teachers.php";
-                /// console.log("Teacher button is clicked.");
-            });
-        document
-            .getElementById("students_page")
-            .addEventListener("click", function(e) {
-                e.preventDefault();
-                window.location.href = "../../pages/admin/students.php";
-                //  console.log("Teacher button is clicked.");
-            });
-        document
-            .getElementById("courses_page")
-            .addEventListener("click", function(e) {
-                e.preventDefault();
-                window.location.href = "../../pages/admin/courses.php";
-                //  console.log("Teacher button is clicked.");
-            });
-    });
-    </script>
+
     < /body>
         < /html>

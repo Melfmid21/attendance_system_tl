@@ -104,7 +104,7 @@ $username = $_SESSION['email'];
                 </li>
 
                 <li>
-                    <a href="" id="teacher_page"
+                    <a href="../../pages/admin/teachers.php" id="teacher_page"
                         class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
                         <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -118,10 +118,11 @@ $username = $_SESSION['email'];
                 </li>
 
                 <li>
-                    <a id="students_page"
-                        class="flex items-center p-2 text-gray-200 bg-menu rounded-sm cursor-pointer  dark:text-white  dark:hover:bg-gray-700 group">
+                    <a id="ad_student_page"
+                        class="flex items-center p-2 text-gray-200 bg-menu rounded-sm cursor-pointer  dark:text-white  dark:hover:bg-gray-700 group"
+                        aria-controls="ad_student" data-collapse-toggle="ad_student">
 
-                        <svg class="w-5 h-5 text-gray-200 transition duration-75 dark:text-gray-400  "
+                        <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
@@ -129,13 +130,39 @@ $username = $_SESSION['email'];
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Student
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Students</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
                     </a>
+                    <ul id="ad_student" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="../../pages/admin/ad_student_college.php"
+                                class="flex items-center w-full p-2 text-gray-200 bg-menu transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Senior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Junior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Elementary
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a id="department"
                         class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
-                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                        aria-controls="ad_department" data-collapse-toggle="ad_department">
 
                         <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -152,7 +179,7 @@ $username = $_SESSION['email'];
                                 d="m1 1 4 4 4-4" />
                         </svg>
                     </a>
-                    <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                    <ul id="ad_department" class="hidden py-2 space-y-2">
                         <li>
                             <a href="../../pages/admin/ad_department_college.php"
                                 class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
@@ -242,7 +269,7 @@ $username = $_SESSION['email'];
     <div class="p-4 sm:ml-64">
         <main class="p-2 dark:border-gray-700 mt-8">
             <div id="content-area">
-                <h2 class="text-menu text-2xl font-bold mb-4 pt-4">Students</h2>
+                <h2 class="text-menu text-2xl font-bold mb-4 pt-4">Student's College</h2>
                 <div class="bg-white px-6  rounded-sm shadow-sm">
                     <!-- <h2 class="text-xl font-heading font-bold mb-4">Student Table</h2> -->
                     <div class="flex justify-between items-center pt-4 pb-2  bg-white">
@@ -273,7 +300,7 @@ $username = $_SESSION['email'];
 
                         <button id="addStudent" data-dropdown-toggle="dropdown"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            type="button">Add Student<svg class="w-4 h-4 ms-3" aria-hidden="true"
+                            type="button">Student Account/Schedule<svg class="w-4 h-4 ms-3" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 1 4 4 4-4" />
@@ -287,14 +314,14 @@ $username = $_SESSION['email'];
                                 aria-labelledby="dropdownDefaultButton">
                                 <li>
                                     <a href="../../pages/admin/students_add_college.php"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">College</a>
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Account</a>
                                 </li>
                                 <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Senior
-                                        high</a>
+                                    <a href="#" data-modal-target="add_schedule_modal"
+                                        data-modal-toggle="add_schedule_modal"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Schedule</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Junior
                                         high</a>
@@ -302,7 +329,7 @@ $username = $_SESSION['email'];
                                 <li>
                                     <a href="#"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Elementary</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
 
@@ -351,7 +378,7 @@ $username = $_SESSION['email'];
     year_level, 
     fingerprint_id 
 FROM students 
-WHERE isDeleted != 1 
+WHERE isDeleted != 1 AND grade_level = 'College' 
 LIMIT :limit OFFSET :offset;
 ");
                 $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
@@ -360,7 +387,7 @@ LIMIT :limit OFFSET :offset;
                 $students = $stmt->fetchAll();
 
                 // Query to count total number of students for pagination
-                $countStmt = $pdo->query("SELECT COUNT(*) FROM students WHERE isDeleted != 1 ");
+                $countStmt = $pdo->query("SELECT COUNT(*) FROM students WHERE isDeleted != 1 AND grade_level = 'College' ");
                 $totalStudents = $countStmt->fetchColumn();
                 $totalPages = ceil($totalStudents / $limit); // Calculate total pages
 
@@ -445,6 +472,9 @@ LIMIT :limit OFFSET :offset;
 
 
                 <?php  include '../../include/admin/edit_modal_student.php';?>
+                <?php  include '../../include/admin/add_modal_student_schedule_college.php';?>
+
+
 
             </div>
             <!-- end of content -->

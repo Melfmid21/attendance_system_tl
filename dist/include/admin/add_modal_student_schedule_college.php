@@ -1,6 +1,6 @@
    <!-- ===========================================================================================================================================                   -->
    <!-- Add teacher modal -->
-   <div id="add-teacher-schedule-college" tabindex="-1" aria-hidden="true"
+   <div id="add_schedule_modal" tabindex="-1" aria-hidden="true"
        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
        <div class="relative w-full max-w-4xl max-h-full">
            <!-- Modal content -->
@@ -8,11 +8,11 @@
                <!-- Modal header -->
                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                       Create Teacher's Schedule
+                       Create Student's Schedule
                    </h3>
                    <button type="button"
                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-sm text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                       data-modal-toggle="add-teacher-schedule-college">
+                       data-modal-toggle="add_schedule_modal">
                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                            viewBox="0 0 14 14">
                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -22,7 +22,7 @@
                    </button>
                </div>
                <!-- Modal body -->
-               <form class="p-4 md:p-5 grid grid-cols-2 gap-4" id="add-teacher-schedule-form">
+               <form class="p-4 md:p-5 grid grid-cols-2 gap-4" id="add-student-schedule-form">
                    <!-- <div class="grid gap-4 mb-4 grid-cols-3">
 
                    </div> -->
@@ -32,28 +32,28 @@
                        <select id="teacher" name="teacher"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                            required>
-                           <option value="">Select teacher</option>
+                           <option value="">Select student</option>
                            <?php
         // Include database connection
         require_once '../../config/pdo_database.php';
 
         try {
             // Prepare and execute the query for teachers
-            $stmt = $pdo->prepare("SELECT id, firstname, lastname FROM users 
-                                WHERE role = 'teacher' 
+            $stmt = $pdo->prepare("SELECT id, firstname, lastname FROM students
+                                WHERE grade_level = 'College' 
                                 AND isDeleted = 0 
                                 ORDER BY lastname ASC");
             $stmt->execute();
 
-            // Fetch all teachers
+            // Fetch all students
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo '<option value="' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') . '">' 
                     . htmlspecialchars($row['lastname'] . ', ' . $row['firstname'], ENT_QUOTES, 'UTF-8') . 
                     '</option>';
             }
         } catch(PDOException $e) {
-            error_log("Error loading teachers: " . $e->getMessage());
-            echo '<option value="">Error loading teachers</option>';
+            error_log("Error loading students: " . $e->getMessage());
+            echo '<option value="">Error loading students</option>';
         }
         ?>
                        </select>

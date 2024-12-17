@@ -1,34 +1,6 @@
 "use-strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-  document
-    .getElementById("dashboard_page")
-    .addEventListener("click", function (e) {
-      e.preventDefault();
-      window.location.href = "../../pages/admin/ad_dashboard.php";
-      console.log("Teacher button is clicked.");
-    });
-  document
-    .getElementById("teacher_page")
-    .addEventListener("click", function (e) {
-      e.preventDefault();
-      window.location.href = "../../pages/admin/teachers.php";
-      console.log("Teacher button is clicked.");
-    });
-  document
-    .getElementById("students_page")
-    .addEventListener("click", function (e) {
-      e.preventDefault();
-      window.location.href = "../../pages/admin/students.php";
-      console.log("Teacher button is clicked.");
-    });
-  document
-    .getElementById("courses_page")
-    .addEventListener("click", function (e) {
-      e.preventDefault();
-      window.location.href = "../../pages/admin/courses.php";
-      console.log("Teacher button is clicked.");
-    });
   document.getElementById("refresh").addEventListener("click", function (e) {
     const searchTerm = "";
 
@@ -81,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    //THIS WILL POPULATE THE DATA IN THE EDIT MODAL FOR TEACHER
+  //THIS WILL POPULATE THE DATA IN THE EDIT MODAL FOR TEACHER
   //==========================================================================================================================
   // Declare originalValues to store the original data for comparison
   let originalValues = {};
@@ -108,15 +80,22 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       document.querySelector("#edit_dob").value = originalValues.dob;
       document.querySelector("#edit_email").value = originalValues.email;
-      document.querySelector("#edit_contact_number").value = originalValues.contact_number;
+      document.querySelector("#edit_contact_number").value =
+        originalValues.contact_number;
       document.querySelector("#edit_address").value = originalValues.address;
-      document.querySelector("#edit_guardian_name").value = originalValues.guardian_name;
-      document.querySelector("#edit_relationship").value = originalValues.relationship;
-      document.querySelector("#edit_guardian_contact").value = originalValues.guardian_contact_number;
-      document.querySelector("#edit_guardian_address").value = originalValues.guardian_address;
+      document.querySelector("#edit_guardian_name").value =
+        originalValues.guardian_name;
+      document.querySelector("#edit_relationship").value =
+        originalValues.relationship;
+      document.querySelector("#edit_guardian_contact").value =
+        originalValues.guardian_contact_number;
+      document.querySelector("#edit_guardian_address").value =
+        originalValues.guardian_address;
       document.querySelector("#edit_course").value = originalValues.course;
-      document.querySelector("#edit_year_level").value = originalValues.year_level;
-      document.querySelector("#edit_fingerprint_id").value = originalValues.fingerprint_id;
+      document.querySelector("#edit_year_level").value =
+        originalValues.year_level;
+      document.querySelector("#edit_fingerprint_id").value =
+        originalValues.fingerprint_id;
     });
   });
   //THIS CODE SUBMIT  WHEN EDIT BUTTON IS PRESSED FOR TEACHER
@@ -135,15 +114,25 @@ document.addEventListener("DOMContentLoaded", function () {
         gender: document.getElementById("edit_gender").value.trim(), // Trim spaces
         dob: document.getElementById("edit_dob").value.trim(), // Trim spaces
         email: document.getElementById("edit_email").value.trim(), // Trim spaces
-        contact_number: document.getElementById("edit_contact_number").value.trim(), // Trim spaces
+        contact_number: document
+          .getElementById("edit_contact_number")
+          .value.trim(), // Trim spaces
         address: document.getElementById("edit_address").value.trim(), // Trim spaces
-        guardian_name: document.getElementById("edit_guardian_name").value.trim(), // Trim spaces
+        guardian_name: document
+          .getElementById("edit_guardian_name")
+          .value.trim(), // Trim spaces
         relationship: document.getElementById("edit_relationship").value.trim(), // Trim spaces
-        guardian_contact_number: document.getElementById("edit_guardian_contact").value.trim(), // Trim spaces
-        guardian_address: document.getElementById("edit_guardian_address").value.trim(), // Trim spaces
+        guardian_contact_number: document
+          .getElementById("edit_guardian_contact")
+          .value.trim(), // Trim spaces
+        guardian_address: document
+          .getElementById("edit_guardian_address")
+          .value.trim(), // Trim spaces
         course: document.getElementById("edit_course").value.trim(), // Trim spaces
         year_level: document.getElementById("edit_year_level").value.trim(), // Trim spaces
-        fingerprint_id: Number(document.getElementById("edit_fingerprint_id").value.trim()), // Convert to number
+        fingerprint_id: Number(
+          document.getElementById("edit_fingerprint_id").value.trim()
+        ) // Convert to number
       };
 
       console.log(currentValues);
@@ -159,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Prevent form submission if no changes were made
       if (!hasChanged) {
         //alert("No changes were made.");
-        showAlert('warning',"No changes were made.");
+        showAlert("warning", "No changes were made.");
         return;
       }
 
@@ -188,16 +177,16 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           });
         } else {
-          showAlert('error',result.message);
+          showAlert("error", result.message);
         }
       } catch (error) {
         console.error("Error:", error);
         //  alert("An error occurred. Please try again.");
-        showAlert('error',"An error occurred. Please try again.");
+        showAlert("error", "An error occurred. Please try again.");
       }
     });
 
-    //DELETE OR DEACTIVATE TEACHER
+  //DELETE OR DEACTIVATE TEACHER
   //=================================================================================================================
   document.querySelectorAll("#deleteTeacher").forEach((button) => {
     button.addEventListener("click", function () {
@@ -213,7 +202,6 @@ document.addEventListener("DOMContentLoaded", function () {
       deleteStudentFunction(values.id, deletes);
     });
   });
-
 }); //end dom
 //FUNCTION HERE
 //=====================================================================================================
@@ -263,28 +251,28 @@ function deleteStudentFunction(user_id, deletes) {
 // Reusable alert function
 async function showAlert(type, message) {
   const iconMap = {
-      success: 'success',
-      warning: 'warning',
-      error: 'error',
+    success: "success",
+    warning: "warning",
+    error: "error"
   };
 
   await Swal.fire({
-      icon: iconMap[type] || 'info',
-      title: message,
-      showConfirmButton: true,
-      showClass: {
-          popup: `
+    icon: iconMap[type] || "info",
+    title: message,
+    showConfirmButton: true,
+    showClass: {
+      popup: `
               animate__animated
               animate__fadeInUp
               animate__faster
-          `,
-      },
-      hideClass: {
-          popup: `
+          `
+    },
+    hideClass: {
+      popup: `
               animate__animated
               animate__fadeOutDown
               animate__faster
-          `,
-      },
+          `
+    }
   });
 }

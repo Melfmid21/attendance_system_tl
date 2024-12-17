@@ -49,11 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare(
             'INSERT INTO students (
                 firstname, middle_name, lastname, gender, dob, email, address, contact_number,
-                guardian_name, relationship, guardian_contact_number, guardian_address,
+                guardian_name, relationship, guardian_contact_number, guardian_address,grade_level,
                 course, year_level, fingerprint_id
             ) VALUES (
                 :firstname, :middle_name, :lastname, :gender, :dob, :email, :address, :contact_number,
-                :guardian_name, :relationship, :guardian_contact, :guardian_address,
+                :guardian_name, :relationship, :guardian_contact, :guardian_address, :grade_level,
                 :course, :year_level, :fingerprint_id
             )'
         );
@@ -72,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':relationship' => $input['relationship'],
             ':guardian_contact' => $input['guardian_contact'],
             ':guardian_address' => $input['guardian_address'],
+            ':grade_level' => 'College',
             ':course' => $input['course'],
             ':year_level' => $input['year_level'],
             ':fingerprint_id' => $input['fingerprint_id']
