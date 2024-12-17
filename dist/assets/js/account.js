@@ -31,10 +31,10 @@ function handleLoginFormSubmit() {
                 // Redirect to admin dashboard
                 //alert('Login success user is ' + role);
                 window.location.href = './pages/admin/dashboard.php';
-            } else if (role === 'user') {
+            } else if (role === 'teacher') {
                // alert('Login success user is ' + role);
                 // Redirect to user dashboard or homepage
-               // window.location.href = './user-page.php';
+               window.location.href = './pages/teacher/teach_dashboard.php';
             } else {
                 // Handle unexpected role (optional)
                // alert('Login failed: Unknown user role.');

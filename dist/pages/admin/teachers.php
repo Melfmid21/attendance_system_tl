@@ -34,6 +34,82 @@ $username = $_SESSION['email'];
     border-style: solid;
     border-color: #1f2937 transparent transparent transparent;
 }
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.animate-fade-out {
+    animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+/* Styling for time inputs */
+.time-inputs {
+    transition: all 0.3s ease-in-out;
+}
+
+.time-inputs input[type="time"] {
+    transition: all 0.2s ease-in-out;
+}
+
+.time-inputs input[type="time"]:hover {
+    border-color: #3b82f6;
+}
+
+.time-inputs input[type="time"]:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Day checkbox styling */
+.day-checkbox {
+    cursor: pointer;
+}
+
+.day-checkbox+label {
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.day-checkbox:checked+label {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+/* Error state */
+.border-red-500 {
+    border-color: #ef4444 !important;
+}
+
+/* Hover effects */
+.flex:hover .day-checkbox:not(:checked)+label {
+    color: #4b5563;
+}
 </style>
 
 <body class="bg-content">
@@ -95,6 +171,7 @@ $username = $_SESSION['email'];
         </div>
     </nav>
 
+    <!-- SIDE BAR -->
     <aside id="logo-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-sidebar border-r border-gray-300 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar">
@@ -102,10 +179,9 @@ $username = $_SESSION['email'];
             <ul class="space-y-2 font-medium">
                 <li>
                     <a id="dashboard_page"
-                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer hover:bg-menu dark:text-white  dark:hover:bg-gray-700 group">
-                        <svg class="w-5 h-5 text-gray-200 transition duration-75 dark:text-gray-400  "
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 22 21">
+                        class="flex items-center p-2 text-gray-200 rounded-sm dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                             <path
                                 d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                             <path
@@ -114,10 +190,11 @@ $username = $_SESSION['email'];
                         <span class="ms-3 cursor-pointer ">Dashboard
                     </a>
                 </li>
+
                 <li>
                     <a href="" id="teacher_page"
-                        class="flex items-center p-2 text-gray-200 rounded-sm bg-menu  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
-                        <svg aria-hidden="true" class="w-5 h-5 text-gray-200 dark:text-white"
+                        class="flex items-center p-2 text-gray-200 bg-menu rounded-sm cursor-pointer  dark:text-white  dark:hover:bg-gray-700 group">
+                        <svg class="w-5 h-5 text-gray-200 transition duration-75 dark:text-gray-400  "
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24" focusable="false">
                             <path fill-rule="evenodd"
@@ -131,28 +208,115 @@ $username = $_SESSION['email'];
                 <li>
                     <a id="students_page"
                         class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
+
                         <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
-                            <path
-                                d="M4 5a2 2 0 0 0-2 2v2.5a1 1 0 0 0 1 1 1.5 1.5 0 1 1 0 3 1 1 0 0 0-1 1V17a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2.5a1 1 0 0 0-1-1 1.5 1.5 0 1 1 0-3 1 1 0 0 0 1-1V7a2 2 0 0 0-2-2H4Z" />
+                            <path fill-rule="evenodd"
+                                d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.82-3.096a5.51 5.51 0 0 0-2.797-6.293 3.5 3.5 0 1 1 2.796 6.292ZM19.5 18h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1a5.503 5.503 0 0 1-.471.762A5.998 5.998 0 0 1 19.5 18ZM4 7.5a3.5 3.5 0 0 1 5.477-2.889 5.5 5.5 0 0 0-2.796 6.293A3.501 3.501 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4 2 2 0 0 0 2 2h.5a5.998 5.998 0 0 1 3.071-5.238A5.505 5.505 0 0 1 7.1 12Z"
+                                clip-rule="evenodd" />
                         </svg>
 
                         <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Student
                     </a>
                 </li>
                 <li>
-                    <a id="courses_page"
-                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
+                    <a id="department"
+                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
+                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+
                         <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
-                                d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-3 8a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Zm2 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Z"
+                                d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z"
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Course
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Department</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </a>
+                    <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="../../pages/admin/ad_department_college.php"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Senior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Junior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Elementary
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a id="subject"
+                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
+                        aria-controls="dropdown-subject" data-collapse-toggle="dropdown-subject">
+
+                        <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M11 4.717c-2.286-.58-4.16-.756-7.045-.71A1.99 1.99 0 0 0 2 6v11c0 1.133.934 2.022 2.044 2.007 2.759-.038 4.5.16 6.956.791V4.717Zm2 15.081c2.456-.631 4.198-.829 6.956-.791A2.013 2.013 0 0 0 22 16.999V6a1.99 1.99 0 0 0-1.955-1.993c-2.885-.046-4.76.13-7.045.71v15.081Z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Subject</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+
+                    </a>
+                    <ul id="dropdown-subject" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="../../pages/admin/ad_subject_college.php"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Senior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Junior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Elementary
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a id="courses_page"
+                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
+                        <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a28.076 28.076 0 0 1-1.091 9M7.231 4.37a8.994 8.994 0 0 1 12.88 3.73M2.958 15S3 14.577 3 12a8.949 8.949 0 0 1 1.735-5.307m12.84 3.088A5.98 5.98 0 0 1 18 12a30 30 0 0 1-.464 6.232M6 12a6 6 0 0 1 9.352-4.974M4 21a5.964 5.964 0 0 1 1.01-3.328 5.15 5.15 0 0 0 .786-1.926m8.66 2.486a13.96 13.96 0 0 1-.962 2.683M7.5 19.336C9 17.092 9 14.845 9 12a3 3 0 1 1 6 0c0 .749 0 1.521-.031 2.311M12 12c0 3 0 6-2 9" />
+                        </svg>
+
+
+                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Biometric
                     </a>
                 </li>
             </ul>
@@ -195,19 +359,78 @@ $username = $_SESSION['email'];
                                 class="p-2 border border-gray-300 rounded-sm focus:ring-2 focus:ring-gray-200 focus:outline-none w-64">
                         </div>
 
-                        <!-- Button on the right -->
-                        <button data-modal-target="add-teacher-modal" data-modal-toggle="add-teacher-modal"
-                            type="button"
-                            class="text-menu bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-sm text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 relative group">
-                            <img src="../../assets/images/add-user.png" alt="" class="w-6 h-5 me-2 -ms-1">
-                            Create Teacher's Account
-                            <!-- Tooltip -->
-                            <span
-                                class="invisible group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded text-sm whitespace-nowrap">
-                                Add Teacher
-                        </button>
 
-                        <!-- Modal toggle -->
+                        <div>
+                            <!-- Button on the right -->
+
+                            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                type="button">Add Account/Schedule <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
+
+                            <!-- Dropdown menu -->
+                            <div id="dropdown"
+                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownDefaultButton">
+                                    <li>
+                                        <a href="#" data-modal-target="add-teacher-modal"
+                                            data-modal-toggle="add-teacher-modal"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add
+                                            Account</a>
+                                    </li>
+                                    <!-- <li>
+                                        <a data-modal-target="add-teacher-schedule"
+                                            data-modal-toggle="add-teacher-schedule" href="#"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add
+                                            Schedule</a>
+                                    </li> -->
+                                    <li>
+                                        <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown"
+                                            data-dropdown-placement="right-start" type="button"
+                                            class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add
+                                            Schedule<svg class="w-2.5 h-2.5 ms-3 rtl:rotate-180" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                                            </svg></button>
+                                        <div id="doubleDropdown"
+                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                                aria-labelledby="doubleDropdownButton">
+                                                <li>
+                                                    <a data-modal-target="add-teacher-schedule-college"
+                                                        data-modal-toggle="add-teacher-schedule-college" href="#"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">College</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Senior
+                                                        High</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Junior
+                                                        High</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Elementary</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+
 
                     </div>
 
@@ -324,7 +547,7 @@ $username = $_SESSION['email'];
                 </div>
 
                 <?php  include '../../include/admin/add_modal_teacher.php';?>
-
+                <?php  include '../../include/admin/add_modal_teacher_schedule_college.php';?>
 
                 <?php  include '../../include/admin/edit_modal_teacher.php';?>
 
@@ -339,6 +562,107 @@ $username = $_SESSION['email'];
     <script src="../../assets/js/admin/teachers.js"></script>
     <!-- <script src="../../assets/js/admin/teacher_add_form.js"></script> -->
     <script src="../../assets/js/admin/logout.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('add-teacher-schedule-form');
+
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Collect values from the form
+                const teacher = document.getElementById("teacher").value;
+                const yearLevel = document.getElementById("year_level").value;
+                const course = document.getElementById("course").value;
+                const subject = document.getElementById("subjects").value;
+                console.log("Subject: ", subject); // Check if the value is correctly captured
+
+                // Get all the checkboxes
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+                // Create an array to store the selected days
+                let days = [];
+
+                // Loop through the checkboxes to check which ones are checked
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        // Adjusted to get the label's text
+                        const label = checkbox.closest('li').querySelector('label');
+                        if (label) {
+                            days.push(label.textContent.trim());
+                        }
+                    }
+                });
+
+                // Output the selected days
+                console.log(days);
+
+                // Get start and end times
+                const startTime = document.getElementById("start-time").value;
+                const endTime = document.getElementById("end-time").value;
+
+                // Prepare the data to be sent
+                const data = {
+                    teacher,
+                    year_level: yearLevel,
+                    course,
+                    subject,
+                    days,
+                    start_time: startTime,
+                    end_time: endTime
+                };
+                console.log(data);
+
+                try {
+                    // Send data to the server using fetch
+                    const response = await fetch("../../api/admin/api_add_teacher_schedule.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    // Check if the request was successful
+                    const result = await response.json();
+
+                    // Check the status from the result
+                    if (result.status === 'success') {
+                        // Using SweetAlert2 for success message
+                        Swal.fire({
+                            title: 'Success!',
+                            text: result.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
+
+                        // Optionally reset the form
+                        document.getElementById("add-teacher-schedule-form").reset();
+                    } else {
+                        // Using SweetAlert2 for failure message
+                        Swal.fire({
+                            title: 'Error!',
+                            text: result.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error saving schedule:", error);
+                    // Using SweetAlert2 for error message
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'An error occurred while saving the schedule. Please try again.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        }
+    });
+    </script>
+
 </body>
 
 </html>

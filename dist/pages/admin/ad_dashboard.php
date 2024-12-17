@@ -94,6 +94,7 @@ $studentCount = $studentStatement->fetchColumn();
         </div>
     </nav>
 
+    <!-- SIDE BAR -->
     <aside id="logo-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-sidebar border-r border-gray-300 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar">
@@ -113,6 +114,7 @@ $studentCount = $studentStatement->fetchColumn();
                         <span class="ms-3 cursor-pointer ">Dashboard
                     </a>
                 </li>
+
                 <li>
                     <a href="" id="teacher_page"
                         class="flex items-center p-2 text-gray-200 rounded-sm dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
@@ -130,28 +132,115 @@ $studentCount = $studentStatement->fetchColumn();
                 <li>
                     <a id="students_page"
                         class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
+
                         <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
-                            <path
-                                d="M4 5a2 2 0 0 0-2 2v2.5a1 1 0 0 0 1 1 1.5 1.5 0 1 1 0 3 1 1 0 0 0-1 1V17a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2.5a1 1 0 0 0-1-1 1.5 1.5 0 1 1 0-3 1 1 0 0 0 1-1V7a2 2 0 0 0-2-2H4Z" />
+                            <path fill-rule="evenodd"
+                                d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Zm6.82-3.096a5.51 5.51 0 0 0-2.797-6.293 3.5 3.5 0 1 1 2.796 6.292ZM19.5 18h.5a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-1.1a5.503 5.503 0 0 1-.471.762A5.998 5.998 0 0 1 19.5 18ZM4 7.5a3.5 3.5 0 0 1 5.477-2.889 5.5 5.5 0 0 0-2.796 6.293A3.501 3.501 0 0 1 4 7.5ZM7.1 12H6a4 4 0 0 0-4 4 2 2 0 0 0 2 2h.5a5.998 5.998 0 0 1 3.071-5.238A5.505 5.505 0 0 1 7.1 12Z"
+                                clip-rule="evenodd" />
                         </svg>
 
                         <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Student
                     </a>
                 </li>
                 <li>
-                    <a id="courses_page"
-                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
+                    <a id="department"
+                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
+                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+
                         <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
-                                d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-3 8a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Zm2 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Z"
+                                d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z"
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Course
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Department</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </a>
+                    <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="../../pages/admin/ad_department_college.php"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Senior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Junior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Elementary
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a id="subject"
+                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group"
+                        aria-controls="dropdown-subject" data-collapse-toggle="dropdown-subject">
+
+                        <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M11 4.717c-2.286-.58-4.16-.756-7.045-.71A1.99 1.99 0 0 0 2 6v11c0 1.133.934 2.022 2.044 2.007 2.759-.038 4.5.16 6.956.791V4.717Zm2 15.081c2.456-.631 4.198-.829 6.956-.791A2.013 2.013 0 0 0 22 16.999V6a1.99 1.99 0 0 0-1.955-1.993c-2.885-.046-4.76.13-7.045.71v15.081Z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Subject</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+
+                    </a>
+                    <ul id="dropdown-subject" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="../../pages/admin/ad_subject_college.php"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">College</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Senior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Junior
+                                high</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center w-full p-2 text-gray-200 transition duration-75 rounded-lg pl-11 group hover:bg-menu dark:text-white dark:hover:bg-gray-700">Elementary
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a id="courses_page"
+                        class="flex items-center p-2 text-gray-200 rounded-sm cursor-pointer  dark:text-white hover:bg-menu dark:hover:bg-gray-700 group">
+                        <svg class="w-5 h-5 text-gray-200 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a28.076 28.076 0 0 1-1.091 9M7.231 4.37a8.994 8.994 0 0 1 12.88 3.73M2.958 15S3 14.577 3 12a8.949 8.949 0 0 1 1.735-5.307m12.84 3.088A5.98 5.98 0 0 1 18 12a30 30 0 0 1-.464 6.232M6 12a6 6 0 0 1 9.352-4.974M4 21a5.964 5.964 0 0 1 1.01-3.328 5.15 5.15 0 0 0 .786-1.926m8.66 2.486a13.96 13.96 0 0 1-.962 2.683M7.5 19.336C9 17.092 9 14.845 9 12a3 3 0 1 1 6 0c0 .749 0 1.521-.031 2.311M12 12c0 3 0 6-2 9" />
+                        </svg>
+
+
+                        <span class="flex-1 ms-3 whitespace-nowrap cursor-pointer ">Biometric
                     </a>
                 </li>
             </ul>
@@ -165,6 +254,7 @@ $studentCount = $studentStatement->fetchColumn();
         <main class="p-2 dark:border-gray-700 mt-14 ">
             <div id="content-area">
                 <!-- Dynamic content will be loaded here -->
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4">
 
                     <div class="bg-white px-7 py-6 rounded-sm border border-stroke shadow-md flex items-center">
@@ -205,10 +295,27 @@ $studentCount = $studentStatement->fetchColumn();
                         <div class="bg-white px-6  rounded-sm shadow-sm pb-10">
                             <div class="bg-white px-6  border-b-2 border-gray-200 flex items-center justify-between">
                                 <h2 class="text-menu text-2xl font-bold mb-4 pt-4">Student's Attendance</h2>
-                                <!-- Date and Time -->
-                                <div id="date-time" class="text-primary text-xl font-bold"></div>
-                            </div>
 
+                                <!-- Date and Time -->
+                                <div id="date-time"
+                                    class="text-primary text-xl font-bold flex items-center justify-center"></div>
+                                <a href="../../pages/admin/attendance_expand.php" id="expand" class=" flex items-center p-2 text-gray-200 rounded-sm cursor-pointer
+                                    dark:text-white hover:bg-menu hover:text-white dark:hover:bg-gray-700 relative
+                                    group">
+                                    <svg class="w-5 h-5 text-gray-800 dark:text-white hover:text-white"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M8 4H4m0 0v4m0-4 5 5m7-5h4m0 0v4m0-4-5 5M8 20H4m0 0v-4m0 4 5-5m7 5h4m0 0v-4m0 4-5-5" />
+                                    </svg>
+                                    <!-- Tooltip -->
+                                    <span
+                                        class="invisible group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white px-2 py-1 rounded text-sm whitespace-nowrap">
+                                        Expand Attendance
+                                    </span>
+                                </a>
+                            </div>
                             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                 <thead class="text-slate-600 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
@@ -231,18 +338,10 @@ $studentCount = $studentStatement->fetchColumn();
 
             // Query to fetch attendance data with student information
             $stmt = $pdo->prepare("
-                SELECT 
-                    s.lastname, 
-                    s.firstname, 
-                    s.middle_name, 
-                    s.grade_level,
-                    s.year_level,
-                    s.course, 
-                    a.date_time 
-                FROM attendance a 
-                JOIN students s ON a.student_id = s.id 
-                WHERE s.isDeleted != 1 
-                ORDER BY a.date_time DESC 
+             SELECT *
+                FROM attendance
+                WHERE DATE(date_time) = CURDATE()
+                ORDER BY date_time DESC 
                 LIMIT :limit OFFSET :offset
             ");
             $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
@@ -251,7 +350,7 @@ $studentCount = $studentStatement->fetchColumn();
             $records = $stmt->fetchAll();
 
             // Query to count total number of records for pagination
-            $countStmt = $pdo->query("SELECT COUNT(*) FROM attendance a JOIN students s ON a.student_id = s.id WHERE s.isDeleted != 1");
+            $countStmt = $pdo->query("SELECT COUNT(*) FROM attendance  WHERE DATE(date_time) = CURDATE()");
             $totalRecords = $countStmt->fetchColumn();
             $totalPages = ceil($totalRecords / $limit); // Calculate total pages
 
@@ -259,18 +358,18 @@ $studentCount = $studentStatement->fetchColumn();
             if ($records) {
                 foreach ($records as $record) {
                     // Format full name
-                    $fullName = ucwords(strtolower($record['lastname'])) . ', ' .
-                                ucwords(strtolower($record['firstname'])) . ' ' .
-                                strtoupper(substr($record['middle_name'], 0, 1)) . '.';
+                    // $fullName = ucwords(strtolower($record['lastname'])) . ', ' .
+                    //             ucwords(strtolower($record['firstname'])) . ' ' .
+                    //             strtoupper(substr($record['middle_name'], 0, 1)) . '.';
 
                     // Format date and time
                     $formattedDateTime = date('F d, Y h:i A', strtotime($record['date_time']));
 
                     echo '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">';
-                    echo '<td class="px-6 py-4 text-gray-800 whitespace-nowrap dark:text-white">' . htmlspecialchars($fullName) . '</td>';
+                    echo '<td class="px-6 py-4 text-gray-800 whitespace-nowrap dark:text-white">' . htmlspecialchars($record['fullname']) . '</td>';
                     echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($record['grade_level']) . '</td>';
                     echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($record['year_level']) . '</td>';
-                    echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($record['course']) . '</td>';
+                    echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($record['course_section']) . '</td>';
                     echo '<td class="px-6 py-4 text-gray-800">' . htmlspecialchars($formattedDateTime) . '</td>';
                     echo '</tr>';
                 }
@@ -287,7 +386,7 @@ $studentCount = $studentStatement->fetchColumn();
             echo '<ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">';
             echo '<li><a href="?page=' . max(1, $page - 1) . '" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a></li>';
             for ($i = 1; $i <= $totalPages; $i++) {
-                echo '<li><a href="?page=' . $i . '" class="flex items-center justify-center px-3 h-8 ' . (($i === $page) ? 'text-blue-600 border border-gray-300 bg-blue-50' : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700') . ' dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">' . $i . '</a></li>';
+                echo '<li><a href="?page=' . $i . '" class="flex items-center justify-center px-3 h-8 ' . (($i === $page) ? 'text-blue-600  bg-blue-50' : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700') . ' dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">' . $i . '</a></li>';
             }
             echo '<li><a href="?page=' . min($totalPages, $page + 1) . '" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a></li>';
             echo '</ul></nav>';
