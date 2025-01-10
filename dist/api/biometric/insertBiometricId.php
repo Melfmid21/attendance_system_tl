@@ -5,9 +5,9 @@ header('Content-Type: application/json');
 require_once '../../config/pdo_database.php';
 
 //Tester Id
-//$uniqueID = "1";
+//$uniqueID = "1846FD519140";
 // Retrieve the unique ID from the query string
- $uniqueID = isset($_GET['id']) ? $_GET['id'] : "";
+$uniqueID = isset($_GET['id']) ? $_GET['id'] : "";
 
 if (empty($uniqueID)) {
     echo json_encode(["status" => "error", "message" => "No ID provided"]);
@@ -25,7 +25,7 @@ try {
         echo json_encode(["status" => "success", "exists" => true, "message" => "ID already exist"]);
     } else {
         // ID does not exist, insert it
-        $insertStmt = $pdo->prepare("INSERT INTO biometric (biometric_id) VALUES (:biometric_id)");
+        $insertStmt = $pdo->prepare("INSERT INTO biometric (biometric_id, mode) VALUES (:biometric_id, 'attendance')");
         $insertStmt->execute(['biometric_id' => $uniqueID]);
         
         echo json_encode(["status" => "success", "exists" => false, "message" => "ID inserted"]);

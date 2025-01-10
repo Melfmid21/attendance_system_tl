@@ -6,7 +6,7 @@ require_once '../../config/pdo_database.php';
 
 // Retrieve the unique ID from the query string
 // $uniqueID = isset($_GET['id']) ? $_GET['id'] : "";
-$uniqueID = 2;//change this Id refere to the database students finger print id
+$uniqueID = 3;//change this Id refere to the database students finger print id
 
 if (empty($uniqueID)) {
     echo json_encode(["status" => "error", "message" => "No ID provided"]);

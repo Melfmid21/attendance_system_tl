@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 require_once '../../config/pdo_database.php';
 
 //Tester Id
-// $uniqueID = "1";
+///$uniqueID = "1846FD519140";
 // Retrieve the unique ID from the query string
  $uniqueID = isset($_GET['id']) ? $_GET['id'] : "";
 
@@ -22,9 +22,9 @@ try {
     $result = $stmt->fetch();
 
     if ($result['count'] > 0) {
-        echo json_encode(["status" => "success", "exists" => true,"message" => "Biometric ID exist."]);
+        echo json_encode(["status" => "success", "exist" => true,"message" => "Biometric ID exist."]);
     } else {
-        echo json_encode(["status" => "success", "exists" => false,"message" => "Biometric ID doesn't exist."]);
+        echo json_encode(["status" => "success", "exist" => false,"message" => "Biometric ID doesn't exist."]);
     }
 } catch (Exception $e) {
     echo json_encode(["status" => "error","exists" => false, "message" => $e->getMessage()]);

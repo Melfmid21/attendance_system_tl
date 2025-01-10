@@ -5,8 +5,8 @@ header('Content-Type: application/json');
 require_once '../../config/pdo_database.php';
 
 // Retrieve the unique ID from the query string
-$uniqueID = isset($_GET['id']) ? $_GET['id'] : "";
-
+ $uniqueID = isset($_GET['id']) ? $_GET['id'] : "";
+//$uniqueID = "1846FD519140";
 if (empty($uniqueID)) {
     echo json_encode(["status" => "error", "message" => "No ID provided"]);
     exit;

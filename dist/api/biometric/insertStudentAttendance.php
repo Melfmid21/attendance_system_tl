@@ -5,8 +5,8 @@ header('Content-Type: application/json');
 require_once '../../config/pdo_database.php';
 
 // Retrieve the unique ID from the query string
-// $uniqueID = isset($_GET['id']) ? $_GET['id'] : "";
-$uniqueID = 1;
+ $uniqueID = isset($_GET['id']) ? $_GET['id'] : "";
+//$uniqueID = 1;
 
 if (empty($uniqueID)) {
     echo json_encode(["status" => "error", "message" => "No ID provided"]);
@@ -44,10 +44,16 @@ try {
             'course_section' => $course_section
         ]);
 
-        echo json_encode(["status" => "success", "message" => "Attendance recorded", "student_id" => $student_id]);
+        // Echo the name of the student if success
+        echo json_encode([
+            "status" => "success", 
+            "message" => "Attendance recorded", 
+            "student_id" => $student_id,
+            "fullname" => $fullname
+        ]);
     } else {
         // If the fingerprint ID is not found in the student table
-        echo json_encode(["status" => "error", "message" => "No matching fingerprint ID found in student records"]);
+        echo json_encode(["status" => "not found", "message" => "No matching fingerprint ID found in student records"]);
     }
 } catch (Exception $e) {
     echo json_encode(["status" => "error", "message" => $e->getMessage()]);
